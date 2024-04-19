@@ -1,0 +1,146 @@
+{
+    "enemies": [
+        {
+            "title": "Knife",
+            "level": "\\S",
+            "time": "1T",
+            "type": "Attack",
+            "image": "",
+            "effects": [
+                "Deal 1D to an enemy"
+            ],
+            "leftEffects": [
+                "1D"
+            ]
+        },
+        {
+            "title":"Defend",
+            "level": "\\S",
+            "time": "1T",
+            "type": "Manuever",
+            "image": "",
+            "effects": [
+                "Apply 2B to self"
+            ]
+        },
+        {
+            "title": "Mirage Strike",
+            "level": "\\S",
+            "time": "2T",
+            "type": "Attack",
+            "image": "",
+            "effects": [
+                "Copy the attack to the right",
+                "(No effect if no attack to the right)"
+            ],
+            "leftEffects": [
+                "\\C->"
+            ]
+        },
+        {
+            "title": "Ponder",
+            "level": "\\S",
+            "time": "1T",
+            "type": "Spell",
+            "image": "",
+            "effects": [
+                "Look at the top 3 cards of your deck",
+                "Put them back in any order",
+                "You may shuffle your deck",
+                "Draw a card"
+            ]
+        },
+        {
+            "title": "Heavy Strike",
+            "level": "\\S",
+            "time": "3T",
+            "type": "Attack",
+            "image": "",
+            "effects": [
+                "Costs -1T if following a non-attack",
+                "Deal 3D to an enemy"
+            ],
+            "leftEffects": [
+                "3D"
+            ]
+        },
+        {
+            "title": "Bolt",
+            "level": "\\S",
+            "time": "1T",
+            "type": "Attack Spell",
+            "image": "",
+            "effects": [
+                "Deal 1D or inflict -1T to an enemy"
+            ],
+            "leftEffects": [
+                "1D"
+            ],
+            "rightEffects": [
+                "-1T"
+            ]
+        }, 
+        {
+            "title": "Bait and Switch",
+            "level": "\\S",
+            "time": "1T",
+            "type": "Attack",
+            "image": "",
+            "effects": [
+                "Deal 1D to an enemy",
+                "Inflict 1D at the end of your turn if no other attack was used"
+            ],
+            "leftEffects": [
+                "1D"
+            ]
+        },
+        {
+            "title": "Sound Blast",
+            "level": "\\S",
+            "time": "2T",
+            "type": "Attack Spell",
+            "image": "",
+            "effects": [
+                "Inflict 1D to an enemy for each neighboring, revealed tile.",
+                "(Neighboring tiles do not include diagonals)"
+            ]
+        },
+        {
+            "title": "Hit and Run",
+            "level": "\\S",
+            "time": "2T",
+            "type": "Maneuver",
+            "image": "",
+            "effects": [
+                "Draw a card",
+                "-1T on a follow-up attack"
+            ]
+        },
+        {
+            "title": "Corrosive Strike",
+            "level": "\\S",
+            "time": "2T",
+            "type": "Attack",
+            "image": "as",
+            "effects": [
+                "Deal 1D to an enemy",
+                "Poison \\P (When the enemy is defeated, you may move this attack to another enemy)"
+            ],
+            "leftEffects": [
+                "1D",
+                "\\P"
+            ]
+        },
+        {
+            "title": "Damage",
+            "effects": [
+                "Deal 1D to an enemy",
+                "\\E Ephermal (This card is trashed after the enemy dies)"
+            ],
+            "leftEffects": [
+                "1D",
+                "\\E"
+            ]
+        }
+    ]
+}

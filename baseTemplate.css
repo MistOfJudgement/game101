@@ -1,0 +1,75 @@
+.card {
+    border: 3px solid black;
+    width: 325px;
+    height: 525px;
+    margin: 2px;
+    padding: 0px;
+    display: table;
+    background-color: white;
+    font-family:  Arial;
+    display:inline-flexbox
+}
+
+.left-edge,.right-edge {
+    display:table-cell;
+    width: 20%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    font: 18pt Arial, sans-serif;
+}
+.left-edge {
+    border-right: 3px dashed black;
+}
+.card-center {
+    display:table-cell;
+    height: 100%;
+    
+}
+.card-title {
+    text-align: center;
+}
+.health {
+    float: inline-start;
+    text-align: left;
+    width: min-content;
+
+
+}
+.time {
+    
+    float: right;
+    text-align: center;
+    font-size: x-large;
+}
+.card-center * {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+.right-edge {
+
+    border-left: 3px dashed black;
+
+}
+
+
+.card-text {
+    font-size: 16pt;
+}
+.header {
+    width: 100%;
+    height: 10%;
+}
+.header *{
+    display:inline-block;
+}
+.card-art {
+    border: 1px solid black;
+    width: 95%;
+    margin: auto;
+    height: auto;
+    float: center;
+    aspect-ratio: 1/1.15;
+}

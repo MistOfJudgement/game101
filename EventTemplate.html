@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="stylesheet" href="./baseTemplate.css">
+<style>
+    .card {
+        border: 3px solid black;
+        width: 325px;
+        height: 325px;
+        margin: 2px;
+        padding: 0px;
+        display: table;
+        background-color: white;
+    }
+
+    .left-edge,.right-edge {
+        display:table-cell;
+        width: 15%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+        text-align: center;
+        font: 18px Arial, sans-serif;
+    }
+    .left-edge {
+        border-right: 3px dashed black;
+    }
+    .card-center {
+        display:table-cell;
+        height: 100%;
+        padding: 10px;
+        padding-bottom: 0px;
+    }
+    .card-title {
+        text-align: center;
+    }
+    .health {
+        float: inline-start;
+        text-align: left;
+        width: min-content;
+
+
+    }
+    .time {
+        
+        float: right;
+        text-align: center;
+    }
+    .card-center * {
+        margin: 0;
+        padding: 0;
+        text-align: center;
+    }
+    .right-edge {
+
+        border-left: 3px dashed black;
+
+    }
+
+
+    .card-text {
+        font: 18px Arial, sans-serif;
+    }
+    .header {
+        width: 100%;
+        height: 10%;
+    }
+    .header *{
+        display:inline-block;
+    }
+    .card-art {
+        width:100%;
+        aspect-ratio: 2/1;
+    }
+
+</style>
+</head>
+<body>
+<template id="AttackTemplate">
+<div class="card">
+    {{#if leftEffects}}
+    <div class="left-edge">
+        {{#each leftEffects}}
+        <p>{{this}}</p>
+        {{/each}}
+    </div>
+    {{/if}}
+    <div class="card-center">
+        <div class="header">
+        <h1 class="health">{{Health}}</h1>
+
+        <h1 class="card-title">{{Title}}</h1>
+        <h1 class="time">{{Time}}</h1>
+
+        </div>
+        <h3 class="level">{{Level}}</h3>
+        <h3 class="type">{{Type}}</h3>
+        <div class="card-art">
+            {{#if Image}}
+            <img src="{{Image}}" alt="{{Title}}Art" width="100%" height="100%">
+            {{else}}
+            <p>{{Title}} art<p>
+            {{/if}}
+        </div>
+        <div class="card-text">
+            
+            {{#each effects}}
+            <p>{{this}}</p>
+            {{/each}}
+        </div>
+    </div>
+    {{#if rightEffects}}
+    <div class="right-edge">
+        {{#each rightEffects}}
+        <p>{{this}}</p>
+        {{/each}}
+    {{/if}}
+</div>
+</template>
+<button onclick="downloadAll()">Save All</button>
+<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+<script src="./baseScript.js"></script>
+<script src="./dom-to-image.min.js"></script><script>
+    var attackTemplate = document.getElementById('AttackTemplate');
+    var attackTemplateHTML = attackTemplate.innerHTML;
+    let events = [
+        {
+            Title: "Healing Fountain",
+            Level: "\\S",
+            Type: "Room",
+            Image: "",
+            effects: [
+                "1T\\E: Recover 4 heatlh",
+            ],
+        },
+        {
+            Title: "Trade Under Duress",
+            Level: "\\S",
+            Type: "Event",
+            Image: "asd",
+            effects: [
+                "Trash the top card of your deck",
+                "Put the top card of the \\SAction deck on the top of your deck",
+            ],
+        }, 
+        {
+            Title: "Shop",
+            Level: "\\S",
+            Type: "Event",
+            Image: "d",
+            effects: [
+                "Draw 2 cards from the \\SAction deck. Trash 2 cards from your hand.",
+            ],
+        },
+        {
+            Title: "Chapel",
+            Level: "\\S",
+            Type: "Room",
+            Image: "d",
+            effects: [
+                "1T: Trash a card from your hand, then draw a card",
+            ],
+        }
+    ]
+
+    events.forEach(setImage);
+    applyEffects(events);
+    var attackTemplateScript = Handlebars.compile(attackTemplateHTML);
+    //var attackHTML = attackTemplateScript(card);
+    //document.write(attackHTML); 
+    for(card of events) {
+        var attackHTML = attackTemplateScript(card);
+        document.write(attackHTML);
+    }
+    
+    function Save(cards) {
+        for (let i = 0; i < cards.length; i++) {
+            domtoimage.toPng(document.getElementsByClassName("card")[i])
+                .then(function (dataUrl) {
+                    var img = new Image();
+                    img.src = dataUrl;
+                    document.body.appendChild(img);
+                })
+                .catch(function (error) {
+                    console.error('oops, something went wrong!', error);
+                });
+        }
+    }
+
+    function download(cards, name) {
+        for (let i = 0; i < cards.length; i++) {
+            domtoimage.toPng(document.getElementsByClassName("card")[i])
+                .then(function (dataUrl) {
+                    var link = document.createElement('a');
+                    link.download = 'card' + name + "_" + i + '.png';
+                    link.href = dataUrl;
+                    link.click();
+                })
+                .catch(function (error) {
+                    console.error('oops, something went wrong!', error);
+                });
+        }
+    }
+    function downloadAll() {
+        //download(actions, "actions");
+        download(events, "events");
+    }
+
+</script>
+</body>
+</html>

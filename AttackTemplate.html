@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="./baseTemplate.css"></style>
+<style>
+    .card-text {
+        font-size: large;
+    }
+    .header {
+        font-size: medium;
+    }
+</style>
+</head>
+<body>
+<template id="AttackTemplate">
+<div class="card">
+    {{#if leftEffects}}
+    <div class="left-edge">
+        {{#each leftEffects}}
+        <p>{{this}}</p>
+        {{/each}}
+    </div>
+    {{/if}}
+    <div class="card-center">
+        <div class="header">
+        <h1 class="health">{{Health}}</h1>
+
+        <h1 class="card-title">{{Title}}</h1>
+        <h1 class="time">{{Time}}</h1>
+
+        </div>
+        <h3 class="level">{{Level}}</h3>
+        <h3 class="type">{{Type}}</h3>
+        <div class="card-art">
+            {{#if Image}}
+            <img src="{{Image}}" alt="{{Title}}Art">
+            {{else}}
+            <p>{{Title}} art<p>
+            {{/if}}
+        </div>
+        <div class="card-text">
+            
+            {{#each effects}}
+            <p>{{this}}</p>
+            {{/each}}
+        </div>
+    </div>
+    {{#if rightEffects}}
+    <div class="right-edge">
+        {{#each rightEffects}}
+        <p>{{this}}</p>
+        {{/each}}
+    {{/if}}
+</div>
+</template>
+<button onclick="downloadAll()">Save All</button>
+<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+<script src="./dom-to-image.min.js"></script>
+<script src="./baseScript.js"></script>
+<script>
+    var attackTemplate = document.getElementById('AttackTemplate');
+    var attackTemplateHTML = attackTemplate.innerHTML;
+    let actions = [
+        {
+            Title: "Knife",
+            Level: "\\S",
+            Time: "1T",
+            Type: "Attack",
+            Image: "",
+            effects: [
+                "Deal 1D to an enemy",
+            ],
+            leftEffects: [
+                "1D"
+            ],
+        },
+        {
+            Title:"Defend",
+            Level: "\\S",
+            Time: "1T",
+            Type: "Manuever",
+            Image: "",
+            effects: [
+                "Apply 2B to self",
+            ],
+        },
+        {
+            Title: "Mirage Strike",
+            Level: "\\S",
+            Time: "2T",
+            Type: "Attack",
+            Image: "",
+            effects: [
+                "Copy the attack to the right",
+                "(No effect if no attack to the right)"
+            ],
+            leftEffects: [
+                "\\C->"
+            ],
+        },
+        {
+            Title: "Ponder",
+            Level: "\\S",
+            Time: "1T",
+            Type: "Spell",
+            Image: "",
+            effects: [
+                "Look at the top 3 cards of your deck",
+                "Put them back in any order",
+                "You may shuffle your deck",
+                "Draw a card"
+            ],
+        },
+        {
+            Title: "Heavy Strike",
+            Level: "\\S",
+            Time: "3T",
+            Type: "Attack",
+            Image: "",
+            effects: [
+                "Costs -1T if following a non-attack",
+                "Deal 3D to an enemy"
+            ],
+            leftEffects: [
+                "3D"
+            ],
+        },
+        {
+            Title: "Bolt",
+            Level: "\\S",
+            Time: "1T",
+            Type: "Attack Spell",
+            Image: "",
+            effects: [
+                "Deal 1D or inflict -1T to an enemy",
+            ],
+            leftEffects: [
+                "1D",
+            ],
+            rightEffects: [
+                "-1T"
+            ],
+        }, 
+        {
+            Title: "Bait and Switch",
+            Level: "\\S",
+            Time: "1T",
+            Type: "Attack",
+            Image: "",
+            effects: [
+                "Deal 1D to an enemy",
+                "Inflict 1D at the end of your turn if no other attack was used"
+            ],
+            leftEffects: [
+                "1D",
+            ],
+        },
+        {
+            Title: "Sound Blast",
+            Level: "\\S",
+            Time: "2T",
+            Type: "Attack Spell",
+            Image: "",
+            effects: [
+                "Inflict 1D to an enemy for each neighboring, revealed tile.",
+                "(Neighboring tiles do not include diagonals)"
+            ],
+        },
+        {
+            Title: "Hit and Run",
+            Level: "\\S",
+            Time: "2T",
+            Type: "Maneuver",
+            Image: "",
+            effects: [
+                "Draw a card",
+                "-1T on a follow-up attack"
+            ],
+        },
+        {
+            Title: "Corrosive Strike",
+            Level: "\\S",
+            Time: "2T",
+            Type: "Attack",
+            Image: "as",
+            effects: [
+                "Deal 1D to an enemy",
+                "Poison \\P (When the enemy is defeated, you may move this attack to another enemy)"
+            ],
+            leftEffects: [
+                "1D",
+                "\\P"
+            ],
+        },
+        {
+            Title: "Damage",
+            effects: [
+                "Deal 1D to an enemy",
+                "\\E Ephermal (This card is trashed after the enemy dies)"
+            ],
+            leftEffects: [
+                "1D",
+                "\\E"
+            ],
+        },
+    ]
+    let items = [
+        {
+            Title: "Vest of Insight",
+            Level: "\\S",
+            effects: [
+                "At the start of your turn, draw +1 cards"
+            ]
+        },
+        {
+            Title: "Boots of Steel",
+            Level: "\\S",
+            effects: [
+                "The second card you play each turn costs +1T",
+                "\\B on your cards increase by 1."
+            ]
+        },
+        {
+            Title: "Unfinished Map",
+            Level: "\\S",
+            effects: [
+                "\\E: Peek at up to 2 tiles",
+            ]
+        },
+        {
+            Title: "Four Leaf Clover Salad",
+            Level: "\\S",
+            effects: [
+                "Enemies roll twice for each action and take the lower result",
+                "\\E: Apply +3T to self"
+            ],
+            Image: "Asdf"
+        },
+        {
+            Title: "Vial of Poison",
+            Level: "\\S",
+            effects: [
+                "1T: The attack to the left gets \\P(When the enemy is defeated, you may move that attack to another enemy)",
+                "\\E Ephermal (This card is trashed after the enemy dies)"
+            ],
+            leftEffects: [
+                "<-\\P",
+                "\\E"
+            ],
+            Image: "Asdf"
+        },
+    ]
+    items.forEach(card=>setImage(card))
+    actions.forEach(setImage);
+    allCards = [...actions, ...items]
+    
+    let current = actions;
+    applyEffects(allCards);
+    var attackTemplateScript = Handlebars.compile(attackTemplateHTML);
+    //var attackHTML = attackTemplateScript(card);
+    //document.write(attackHTML); 
+    for(card of current) {
+        var attackHTML = attackTemplateScript(card);
+        document.write(attackHTML);
+    }
+    
+    function Save(cards) {
+        for (let i = 0; i < cards.length; i++) {
+            domtoimage.toPng(document.getElementsByClassName("card")[i])
+                .then(function (dataUrl) {
+                    var img = new Image();
+                    img.src = dataUrl;
+                    document.body.appendChild(img);
+                })
+                .catch(function (error) {
+                    console.error('oops, something went wrong!', error);
+                });
+        }
+    }
+
+
+    function downloadAll() {
+        //download(actions, "actions");
+        download(current, "attacks");
+    }
+
+</script>
+</body>
+</html>

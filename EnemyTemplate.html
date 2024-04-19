@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="stylesheet" href="./baseTemplate.css">
+<style>
+    .card {
+        border-left-style: dashed;
+    }
+
+
+    .health {
+        float: inline-start;
+        text-align: left;
+        width: min-content;
+    }
+
+
+
+    .card-text {
+        font: 18px Arial, sans-serif;
+    }
+    .header {
+        width: 100%;
+        height: 10%;
+    }
+    .header *{
+        display:inline-block;
+    }
+    .card-art {
+        aspect-ratio: 1/1;
+    }
+
+</style>
+</head>
+<body>
+<template id="AttackTemplate">
+<div class="card">
+    <div class="card-center">
+        <div class="header">
+        <h1 class="health">{{Health}}</h1>
+
+        <h1 class="card-title">{{Title}}</h1>
+        <h1 class="time">{{Time}}</h1>
+
+        </div>
+        <h3 class="level">{{Level}}</h3>
+        <h3 class="type">{{Type}}</h3>
+        <div class="card-art">
+            {{#if Image}}
+            <img src="{{Image}}" alt="{{Title}}Art" width="100%" height="100%">
+            {{else}}
+            <p>{{Title}} art<p>
+            {{/if}}
+        </div>
+        <div class="card-text">
+            
+            {{#each effects}}
+            <p>{{this}}</p>
+            {{/each}}
+        </div>
+    </div>
+</div>
+</template>
+
+<button onclick="downloadAll()">Save All</button>
+<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+<script src="./dom-to-image.min.js"></script>
+<script src="./baseScript.js"></script>
+<script>
+    
+    var attackTemplate = document.getElementById('AttackTemplate');
+    var attackTemplateHTML = attackTemplate.innerHTML;
+    let cards = [
+    {
+        Title: "Slime",
+        Level: "\\S",
+        Health: "3H",
+        Time: "2T",
+        Image: "",
+        effects: [
+            "",
+            "\\R1-3: Deal 1D to player",
+            "\\R5-6: Apply Stun -1T to player",
+        ],
+
+    },
+    {
+        Title: "Goblin Fighter",
+        Level: "\\S",
+        Health: "4H",
+        Time: "2T",
+        Image: "",
+        effects: [
+            "\\R1-3: Apply 1B to self",
+            "\\R4-6: Deal 1D to player",
+        ],
+    },
+    {
+        Title: "Goblin Mage",
+        Level: "\\S",
+        Health: "3H",
+        Time: "2T",
+        Image: "asd",
+        effects: [
+            "When this enemy is summoned, also summon a \\S enemy",
+            "\\R3-4: Apply Stun -1T to player",
+            "\\R5: Apply +1R to other enemies",
+            "\\R6: Other enemies inflict +1D on their attacks",
+        ],
+    },
+    ]
+
+
+    
+    //replace /(\d)([A-Z])/g, "$1lookup[$2]"
+    /*for (let card of cards) {
+        for (let i = 0; i < card.effects.length; i++) {
+            card.effects[i] = card.effects[i].replace(/(\d+)([A-Z])/g, (match, p1, p2) => `${p1}${effectLookup[p2].symbol}`);
+        }
+        card.Level = card.Level.replace(/(\d+)([A-Z])/g, (match, p1, p2) => `${p1}${effectLookup[p2].symbol}`);
+    }
+    for(let i = 0; i < card.leftEffects?.length; i++) {
+        card.leftEffects[i] = card.leftEffects[i].replace(/(\d+)([A-Z])/g, (match, p1, p2) => `${p1}${effectLookup[p2].symbol}`);
+    }
+    for(let i = 0; i < card.rightEffects?.length; i++) {
+        card.rightEffects[i] = card.rightEffects[i].replace(/(\d+)([A-Z])/g, (match, p1, p2) => `${p1}${effectLookup[p2].symbol}`);
+    }*/
+    //apply to all fields in card
+    //also replace ~ with card titl
+    applyEffects(cards);
+    var attackTemplateScript = Handlebars.compile(attackTemplateHTML);
+    //var attackHTML = attackTemplateScript(card);
+    //document.write(attackHTML);
+    
+    cards.forEach(setImage);
+    for(card of cards) {
+        var attackHTML = attackTemplateScript(card);
+        document.write(attackHTML);
+    }
+
+    
+    function Save() {
+        for (let i = 0; i < cards.length; i++) {
+            domtoimage.toPng(document.getElementsByClassName("card")[i])
+                .then(function (dataUrl) {
+                    var img = new Image();
+                    img.src = dataUrl;
+                    document.body.appendChild(img);
+                })
+                .catch(function (error) {
+                    console.error('oops, something went wrong!', error);
+                });
+        }
+    }
+
+    function downloadAll() {
+        for (let i = 0; i < cards.length; i++) {
+            domtoimage.toPng(document.getElementsByClassName("card")[i])
+                .then(function (dataUrl) {
+                    var link = document.createElement('a');
+                    link.download = 'cardenemies_' + i + '.png';
+                    link.href = dataUrl;
+                    link.click();
+                })
+                .catch(function (error) {
+                    console.error('oops, something went wrong!', error);
+                });
+        }
+    }
+</script>
+</body>
+</html>
