@@ -14,13 +14,13 @@
 <body>
 <template id="AttackTemplate">
 <div class="card">
-    {{#if leftEffects}}
     <div class="left-edge">
+        {{#if leftEffects}}
         {{#each leftEffects}}
         <p>{{this}}</p>
         {{/each}}
+        {{/if}}
     </div>
-    {{/if}}
     <div class="card-center">
         <div class="header">
         <h1 class="health">{{Health}}</h1>
