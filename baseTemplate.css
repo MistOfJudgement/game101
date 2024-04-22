@@ -2,7 +2,7 @@
     border: 3px solid black;
     width: 325px;
     height: 525px;
-    margin: 2px;
+    /* margin: 2px; */
     padding: 0px;
     display: table;
     background-color: white;
@@ -71,5 +71,5 @@
     margin: auto;
     height: auto;
     float: center;
-    aspect-ratio: 1/1.15;
+    aspect-ratio: 1/1;
 }

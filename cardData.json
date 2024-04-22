@@ -1,146 +1,592 @@
 {
-    "enemies": [
-        {
-            "title": "Knife",
-            "level": "\\S",
-            "time": "1T",
-            "type": "Attack",
-            "image": "",
-            "effects": [
-                "Deal 1D to an enemy"
-            ],
-            "leftEffects": [
-                "1D"
-            ]
-        },
-        {
-            "title":"Defend",
-            "level": "\\S",
-            "time": "1T",
-            "type": "Manuever",
-            "image": "",
-            "effects": [
-                "Apply 2B to self"
-            ]
-        },
-        {
-            "title": "Mirage Strike",
-            "level": "\\S",
-            "time": "2T",
-            "type": "Attack",
-            "image": "",
-            "effects": [
-                "Copy the attack to the right",
-                "(No effect if no attack to the right)"
-            ],
-            "leftEffects": [
-                "\\C->"
-            ]
-        },
-        {
-            "title": "Ponder",
-            "level": "\\S",
-            "time": "1T",
-            "type": "Spell",
-            "image": "",
-            "effects": [
-                "Look at the top 3 cards of your deck",
-                "Put them back in any order",
-                "You may shuffle your deck",
-                "Draw a card"
-            ]
-        },
-        {
-            "title": "Heavy Strike",
-            "level": "\\S",
-            "time": "3T",
-            "type": "Attack",
-            "image": "",
-            "effects": [
-                "Costs -1T if following a non-attack",
-                "Deal 3D to an enemy"
-            ],
-            "leftEffects": [
-                "3D"
-            ]
-        },
-        {
-            "title": "Bolt",
-            "level": "\\S",
-            "time": "1T",
-            "type": "Attack Spell",
-            "image": "",
-            "effects": [
-                "Deal 1D or inflict -1T to an enemy"
-            ],
-            "leftEffects": [
-                "1D"
-            ],
-            "rightEffects": [
-                "-1T"
-            ]
-        }, 
-        {
-            "title": "Bait and Switch",
-            "level": "\\S",
-            "time": "1T",
-            "type": "Attack",
-            "image": "",
-            "effects": [
-                "Deal 1D to an enemy",
-                "Inflict 1D at the end of your turn if no other attack was used"
-            ],
-            "leftEffects": [
-                "1D"
-            ]
-        },
-        {
-            "title": "Sound Blast",
-            "level": "\\S",
-            "time": "2T",
-            "type": "Attack Spell",
-            "image": "",
-            "effects": [
-                "Inflict 1D to an enemy for each neighboring, revealed tile.",
-                "(Neighboring tiles do not include diagonals)"
-            ]
-        },
-        {
-            "title": "Hit and Run",
-            "level": "\\S",
-            "time": "2T",
-            "type": "Maneuver",
-            "image": "",
-            "effects": [
-                "Draw a card",
-                "-1T on a follow-up attack"
-            ]
-        },
-        {
-            "title": "Corrosive Strike",
-            "level": "\\S",
-            "time": "2T",
-            "type": "Attack",
-            "image": "as",
-            "effects": [
-                "Deal 1D to an enemy",
-                "Poison \\P (When the enemy is defeated, you may move this attack to another enemy)"
-            ],
-            "leftEffects": [
-                "1D",
-                "\\P"
-            ]
-        },
-        {
-            "title": "Damage",
-            "effects": [
-                "Deal 1D to an enemy",
-                "\\E Ephermal (This card is trashed after the enemy dies)"
-            ],
-            "leftEffects": [
-                "1D",
-                "\\E"
-            ]
-        }
-    ]
+    "level1": {
+        "monsters": [
+            {
+                "title": "Dissolving Slime",
+                "health": 1,
+                "time": 2,
+                "effects" : [
+                    "1A: Discard a card from your hand"
+                ]
+            },
+            {
+                "title": "Ruthless Goblin",
+                "health": 3,
+                "time": 1,
+                "effects" : [
+                    "1A: /R[1-3] Deal 1D damage",
+                    "1A: Deal 1D damage and apply +1T"
+                ]
+            },
+            {
+                "title": "Twinkling Faerie",
+                "health": 2,
+                "time": 1,
+                "effects" : [
+                    "1A: Hide a card from your hand",
+                    "1A: Deal 1D damage"
+                ]
+            },
+            {
+                "title": "Rusting Golem",
+                "health": 3,
+                "time": 1,
+                "effects" : [
+                    "1A: Deal 1D damage",
+                    "1A: Move an attack from this card to another monster or into your hand"
+                ]
+            },
+            {
+                "title": "Clattering Skeleton",
+                "health": 2,
+                "time": 1,
+                "effects" : [
+                    "1A: Apply -1T",
+                    "1A: Deal 1D damage"
+                ]
+            },
+            {
+                "title": "Slithering Snake",
+                "health": 2,
+                "time": 1,
+                "effects" : [
+                    "1A: Trash a card from your discard pile",
+                    "1A: Deal 1D damage"
+                ]
+            }
+        ],
+        "actions": [
+            {
+                "title": "Knife",
+                "time": 1,
+                "type": "Attack",
+                "effects": [
+                    "Deal 1D"
+                ],
+                "leftEffects": [
+                    "1D"
+                ]
+            },
+            {
+                "title": "Bolt",
+                "time": 1,
+                "type": "Attack Spell",
+                "effects": [
+                    "Deal 1D or draw a card"
+                ],
+                "leftEffects": [
+                    "1D"
+                ],
+                "rightEffects": [
+                    ""
+                ]
+            },
+            {
+                "title": "Hit and Run",
+                "time": 1,
+                "type": "Maneuver",
+                "effects": [
+                    "Costs -1T if following an Attack",
+                    "Draw a card"
+                ],
+                "leftEffects": [""]
+            },
+            {
+                "title": "Rapier",
+                "time": 2,
+                "type": "Attack",
+                "effects": [
+                    "Deal 2D"
+                ],
+                "leftEffects": [
+                    "2D"
+                ]
+            },
+            {
+                "title": "Heavy Axe",
+                "time": 3,
+                "type": "Attack",
+                "effects": [
+                    "Costs -1T if this is the first action in the turn",
+                    "Deal 3D"
+                ],
+                "leftEffects": [
+                    "3D"
+                ]
+            },
+            {
+                "title": "Foresight",
+                "time": 1,
+                "type": "Maneuver Spell",
+                "effects": [
+                    "Draw 2 cards"
+                ],
+                "leftEffects": [
+                    "Draw 2 cards"
+                ]
+            },
+            {
+                "title": "Throwing Axe",
+                "time": 1,
+                "type": "Attack",
+                "effects": [
+                    "/R[1-3] You may spend 1T to return this to hand",
+                    "/R[4-6] Deal 3D"
+                ],
+                "leftEffects": [
+                    "3D",
+                    "/W"
+                ]
+            },
+            {
+                "title": "Plan of Attack",
+                "time": 0,
+                "type": "Maneuver",
+                "effects": [
+                    "Follow up attack costs -1T"
+                ],
+                "leftEffects": [
+                    "/F"
+                ]
+            },
+            {
+                "title": "Take the initiative",
+                "time": 1,
+                "type": "Maneuver",
+                "effects": [
+                    "Follow up attack costs -2T if this monster is undamaged"
+                ],
+                "leftEffects": [
+                    "/F"
+                ]
+            }
+        ],
+        "items": [
+            {
+                "title": "Mana Visor",
+                "effects": [
+                    "1T: Peek at an adjacent tile",
+                    "/E: Choose up to 3 tiles adjacent to revealed tiles. Reveal them in any order."
+                ]
+            },
+            {
+                "title": "Adrenaline Band",
+                "effects": [
+                    "Whenever you take damage, inflict +1T. This only triggers once per turn.",
+                    "/E: Inflict +3T"
+                ]
+            },
+            {
+                "title": "Knowledge Tome",
+                "effects": [
+                    "1T: Draw a card",
+                    "/E: Draw cards until your hand is full"
+                ]
+            },
+            {
+                "title": "Wind Boots",
+                "effects": [
+                    "You may move up to two tiles instead of one over revealed tiles",
+                    "/E: Instantly move to any revealed tile"
+                ]
+            }
+        ],
+        "events": [
+            {
+                "title": "Healing Fountain",
+                "type": "Room",
+                "effects": [
+                    "/E: Recover 3 health"
+                ]
+            },
+            {
+                "title": "Treasure Chest",
+                "type": "Room",
+                "effects": [
+                    "/E: Draw 2 cards"
+                ]
+            },
+            {
+                "title": "Trade Under Duress",
+                "type": "Event",
+                "effects": [
+                    "Trash the top card of your deck.",
+                    "Put the top card of the /S action deck on top of your deck."
+                ]
+            },
+            {
+                "title": "Safe Room",
+                "type": "Room",
+                "effects": [
+                    "You can't play attack actions.",
+                    "Monsters skip their actions."
+                ]
+            },
+            {
+                "title": "Wandering Wares",
+                "type": "Event",
+                "effects": [
+                    "Draw 2 cards from the /S action deck. Trash a card from your hand."
+                ]
+            }
+        ]
+    },
+    "level2": {
+        "monsters": [
+            {
+                "title": "Dissolving Slime",
+                "health": 4,
+                "time": 2,
+                "effects" : [
+                    "1A: Discard an action attached to a monster",
+                    "1A: Deal 1D damage"
+                ]
+            },
+            {
+                "title": "Ruthless Goblin",
+                "health": 6,
+                "time": 1,
+                "effects" : [
+                    "1A: /R[1-2] Deal 3D damage",
+                    "1A: Deal 2D damage and apply +2T"
+                ]
+            },
+            {
+                "title": "Twinkling Faerie",
+                "health": 5,
+                "time": 2,
+                "effects" : [
+                    "2A: Hide a card from your hand. If this monster has 3 or more cards hidden, trash them all and defeat this monster",
+                    "1A: Deal 1D damage"
+                ]
+            },
+            {
+                "title": "Iron Golem",
+                "health": 7,
+                "time": 1,
+                "effects" : [
+                    "1A: Deal 1D damage",
+                    "1A: Move an attack from another monster to this monster"
+                ]
+            },
+            {
+                "title": "Clattering Skeleton",
+                "health": 4,
+                "time": 1,
+                "effects" : [
+                    "1A: Apply -2T",
+                    "1A: Deal 1D damage"
+                ]
+            },
+            {
+                "title": "Slithering Snake",
+                "health": 5,
+                "time": 1,
+                "effects" : [
+                    "1A: Trash a card from your hand and draw a card",
+                    "1A: Deal 1D damage"
+                ]
+            },
+            {
+                "title": "Supporting Wizard",
+                "health": 4,
+                "time": 1,
+                "effects" : [
+                    "When this monster is summoned, summon a /S monster",
+                    "1A: The next monster gains +1A (can't activate if no monster after this one)",
+                    "1A: Deal 1D damage" 
+                ]
+            },
+            {
+                "title": "Swiftness buff",
+                "health": 0,
+                "time": "+1A",
+                "effects" : [
+                    "Summon a /S monster and give it +1A"
+                ],
+                "rightEffects": [
+                    "+1A"
+                ]
+            }
+        ],
+        "actions": [
+            {
+                "title": "Dart",
+                "time": 0,
+                "type": "Attack",
+                "effects": [
+                    "Deal 1D"
+                ],
+                "leftEffects": [
+                    "1D"
+                ]
+            },
+            {
+                "title": "Burning Book",
+                "time": 2,
+                "type": "Attack Spell",
+                "effects": [
+                    "Deal 2D and draw 2 cards",
+                    "/R[1-3] Discard a card"
+                ],
+                "leftEffects": [
+                    "2D"
+                ]
+            },
+            {
+                "title": "Shield Bash",
+                "time": 2,
+                "type": "Attack",
+                "effects": [
+                    "Deal 1D",
+                    "If this is the last action in the turn, the affected monster skips its next turn"
+                ],
+                "leftEffects": [
+                    "1D"
+                ]
+            },
+            {
+                "title": "Seed of Knowledge",
+                "time": 3,
+                "type": "Attack Spell",
+                "effects": [
+                    "This attack's damage is equal to the number of cards in your hand"
+                ],
+                "leftEffects": [
+                    "#/C/D"
+                ]
+            },
+            {
+                "title": "Clean Slate",
+                "time": 1,
+                "type": "Maneuver",
+                "effects": [
+                    "Deal 1D",
+                    "Discard your hand and draw 3 cards"
+                ],
+                "leftEffects": [
+                    "1D"
+                ]
+            },
+            {
+                "title": "Dash Attack",
+                "time": 1,
+                "type": "Attack",
+                "effects": [
+                    "Deal 2D",
+                    "Move 1 tile"
+                ],
+                "leftEffects": [
+                    "2D"
+                ]
+            },
+            {
+                "title": "Confusion Spell",
+                "time": 1,
+                "type": "Attack Spell",
+                "effects": [
+                    "This attack's damage is equal to the number of enemies in play"
+                ],
+                "leftEffects": [
+                    "#/M/D"
+                ]
+            },
+            {
+                "title": "Assassin's Glass Dagger",
+                "time": 2,
+                "type": "Attack",
+                "effects": [
+                    "Defeat the monster",
+                    "/R[1-3] Trash this card"
+                ]
+            }
+        ],
+        "items": [
+            {
+                "title": "Spatial Cube",
+                "effects": [
+                    "1T: Hide a room you standing on",
+                    "/E: Place a hidden room on the board"
+                ]
+            },
+            {
+                "title": "Soul Gem",
+                "effects": [
+                    "When you defeat a monster, gain 1 health",
+                    "/E: Gain health equal to the number of actions attached to monsters"
+                ]
+            },
+            {
+                "title": "EXP Share",
+                "effects": [
+                    "When you defeat a monster, look at 3 reward cards instead of 2",
+                    "/E: Gain all reward cards being looked at"
+                ]
+            },
+            {
+                "title": "Thrark's Third Thumb",
+                "effects": [
+                    "Once per turn, you may add or subtract 1 from any die roll (can not be lower than 1 or higher than 6)",
+                    "1T/E: Until the start of your next turn, choose the result of any die roll"
+                ]
+            },
+            {
+                "title": "Sword of the Fallen",
+                "effects": [
+                    "When you defeat a monster, gain +1A",
+                    "/E: Gain +1A"
+                ]
+            },
+            {
+                "title": "Recycling Bin",
+                "effects": [
+                    "Whenever you trash an action card, you may use 1T. If you do, draw a action card of the same level"
+                ]
+            }
+        ],
+        "events": [
+            {
+                "title": "Healing Fountain",
+                "type": "Room",
+                "effects": [
+                    "/E: Recover 4 health"
+                ]
+            },
+            {
+                "title": "Treasure Chest",
+                "type": "Room",
+                "effects": [
+                    "/E: Draw 2 cards from the /S action deck"
+                ]
+            },
+            {
+                "title": "Trade Under Duress",
+                "type": "Event",
+                "effects": [
+                    "Trash the top card of your deck.",
+                    "Put the top card of the /S/S action deck on top of your deck."
+                ]
+            },
+            {
+                "title": "Safe Room",
+                "type": "Room",
+                "effects": [
+                    "You can't play attack actions.",
+                    "Monsters skip their actions.",
+                    "Moving out of the safe room doesn't cost any time."
+                ]
+            },
+            {
+                "title": "Wandering Merchant",
+                "type": "Event",
+                "effects": [
+                    "Draw 2 cards from the /S action deck. Trash a card from your hand."
+                ]
+            },
+            {
+                "title": "Snake Oil Salesman",
+                "type": "Event",
+                "effects": [
+                    "You may take a heath dice and roll it."
+                ]
+            }
+        ]
+    },
+    "level3": {
+        "monsters": [
+            {
+                "title": "Dissolving Slime",
+                "health": 7,
+                "time": 2,
+                "effects" : [
+                    "1A: Trash an action attached to a monster",
+                    "1A: Deal 1D damage"
+                ]
+            },
+            {
+                "title": "Ruthless Goblin",
+                "health": 10,
+                "time": 1,
+                "effects" : [
+                    "1A: /R[1-2] Deal 3D damage",
+                    "1A: Deal 2D damage and apply +2T"
+                ]
+            },
+            {
+                "title": "Twinkling Faerie",
+                "health": 8,
+                "time": 2,
+                "effects" : [
+                    "2A: Hide a card from your hand. If this monster has 3 or more cards hidden, trash them all and defeat this monster",
+                    "1A: Deal 1D damage"
+                ]
+            },
+            {
+                "title": "Iron Golem",
+                "health": 14,
+                "time": 1,
+                "effects" : [
+                    "1A: Deal 1D damage",
+                    "1A: Move an attack from another monster to this monster"
+                ]
+            },
+            {
+                "title": "Clattering Skeleton",
+                "health": 6,
+                "time": 1,
+                "effects" : [
+                    "1A: Apply -2T",
+                    "1A: Deal 1D damage"
+                ]
+            },
+            {
+                "title": "Slithering Snake",
+                "health": 10,
+                "time": 1,
+                "effects" : [
+                    "1A: Trash a card from your hand and draw a card",
+                    "1A: Deal 1D damage"
+                ]
+            },
+            {
+                "title": "Supporting Wizard",
+                "health": 6,
+                "time": 1,
+                "effects" : [
+                    "When this monster is summoned, summon a monster from the /S action deck",
+                    "1A: The next monster gains +1A (can't activate if no monster after this one)",
+                    "1A: Deal 1D damage"
+                ]
+            },
+            {
+                "title": "Swiftness buff",
+                "health": 0,
+                "time": 0,
+                "effects" : [
+                    "Summon a /S monster and give it +2A"
+                ],
+                "rightEffects": [
+                    "+2A"
+                ]
+            },
+            {
+                "title": "Gusting Elemental",
+                "health": 8,
+                "time": 3,
+                "effects": [
+                    "1A: Deal 1D damage",
+                    "1A: Move the player 1 tile /R [1]left, [2]right, [3]up, [4]down. (no effect if [5-6])"
+                ]
+            }
+        ],
+        "actions": [
+
+        ],
+        "items": [
+
+        ],
+        "events": [
+
+        ]
+    }
 }

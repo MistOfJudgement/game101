@@ -5,9 +5,12 @@
         "B": {symbol:"🛡️", color: "grey"},
         "R": {symbol:"🎲", color: "red"},
         "H": {symbol:"♥", color: "red"},
-        "C": {symbol:"📋", color: "blue"},
-        "P": {symbol:"🫧", color: "blue"},
-        "E": {symbol:"✂"}
+        "C": {symbol:"🃏", color: "blue"},
+        "A": {symbol:"⏱", color: "blue"},
+        "E": {symbol:"✂"},
+        "W": {symbol:"⚠"},
+        "M": {symbol:"☠"},
+        "F": {symbol:"⤴"},
     }
     function checkImage(imageSrc, good, bad) {
         var img = new Image();
@@ -31,12 +34,27 @@
     function applyEffects(cards) {
         for (let card of cards) {
             for (let field in card) {
+                if (field === "health") {
+                    card.health = `${card.health}H`
+                }
+                if (field === "time") {
+                    if ("health" in card) {
+                        card.time = `${card.time}A`
+                    } else {
+                    card.time = `${card.time}T`
+                    }
+                }
+                if (field === "level") {
+                    
+                    card.level = '/S'.repeat(card.level);
+                    console.log(card.level);
+                }
                 if (typeof card[field] === "string") {
-                    card[field] = card[field].replace(/((?:[+-]?\d+)|\\)([A-Z])/g, (match, p1, p2) => `${p1==="\\"? "": p1}${effectLookup[p2].symbol}`);
+                    card[field] = card[field].replace(/((?:[+-]?\d+)|\/)([A-Z])/g, (match, p1, p2) => `${p1==="/"? "": p1}${effectLookup[p2].symbol}`);
                     card[field] = card[field].replace(/~/g, card.Title);
                 } else if (Array.isArray(card[field])) {
                     for (let i = 0; i < card[field].length; i++) {
-                        card[field][i] = card[field][i].replace(/((?:[+-]?\d+)|\\)([A-Z])/g, (match, p1, p2) => `${p1==="\\"? "": p1}${effectLookup[p2].symbol}`);
+                        card[field][i] = card[field][i].replace(/((?:[+-]?\d+)|\/)([A-Z])/g, (match, p1, p2) => `${p1==="/"? "": p1}${effectLookup[p2].symbol}`);
                         card[field][i] = card[field][i].replace(/~/g, card.Title);
                     }
                 }

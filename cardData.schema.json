@@ -1,0 +1,213 @@
+{
+    "title": "CardData",
+    "description": "Holds data for all cards",
+    "type": "object",
+    "properties": {
+        "level1": {
+            "description": "Level 1 cards",
+            "type": "object",
+            "properties": {
+                "monsters": {
+                    "description": "Monster cards",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/monster"
+                    }
+                },
+                "actions": {
+                    "description": "Action cards",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/action"
+                    }
+                },
+                "items": {
+                    "description": "Item cards",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/items"
+                    }
+                },
+                "events": {
+                    "description": "Event cards",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/events"
+                    }
+                }
+            }
+        },
+        "level2": {
+            "description": "Level 2 cards",
+            "type": "object",
+            "properties": {
+                "monsters": {
+                    "description": "Monster cards",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/monster"
+                    }
+                },
+                "actions": {
+                    "description": "Action cards",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/action"
+                    }
+                },
+                "items": {
+                    "description": "Item cards",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/items"
+                    }
+                },
+                "events": {
+                    "description": "Event cards",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/events"
+                    }
+                }
+            }
+        },
+        "level3": {
+            "description": "Level 3 cards",
+            "type": "object",
+            "properties": {
+                "monsters": {
+                    "description": "Monster cards",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/monster"
+                    }
+                },
+                "actions": {
+                    "description": "Action cards",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/action"
+                    }
+                },
+                "items": {
+                    "description": "Item cards",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/items"
+                    }
+                },
+                "events": {
+                    "description": "Event cards",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/events"
+                    }
+                }
+            }
+        }
+    },
+    "$defs": {
+        "monster": {
+            "description": "Monster card",
+            "type": "object",
+            "properties": {
+                "title": {
+                    "description": "Name of the monster",
+                    "type": "string"
+                },
+                "health": {
+                    "description": "health points",
+                    "type": "integer"
+                },
+                "time": {
+                    "description": "action time",
+                    "type": "integer"
+                },
+                "effects": {
+                    "description": "effects",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "action": {
+            "description": "Action card",
+            "type": "object",
+            "properties": {
+                "title": {
+                    "description": "Name of the action",
+                    "type": "string"
+                },
+                "time": {
+                    "description": "action time",
+                    "type": "integer"
+                },
+                "type": {
+                    "description": "type of action",
+                    "type": "string"
+                },
+                "effects": {
+                    "description": "effects",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "leftEffects": {
+                    "description": "left effects",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "rightEffects": {
+                    "description": "right effects",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "items": {
+            "description": "Item card",
+            "type": "object",
+            "properties": {
+                "title": {
+                    "description": "Name of the item",
+                    "type": "string"
+                },
+                "effects": {
+                    "description": "effects",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "events": {
+            "description": "Event card",
+            "type": "object",
+            "properties": {
+                "title": {
+                    "description": "Name of the event",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "type of event",
+                    "type": "string"
+                },
+                "effects": {
+                    "description": "effects",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}
